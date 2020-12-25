@@ -12,6 +12,8 @@ You'll need to set 5 environment variables:
 - `DISCORD_PREFIX` should be set to the prefix you want your bot to activate with (bot will also work with DMs and @ mentions)
 - `DISCORD_HELP_MESSAGE` is what the bot will reply to the `help` command
 
+You can set them by changing the values in the .env file
+
 Then, just run `node index.js`.
 
 ## Docker
@@ -20,5 +22,5 @@ Set environment variables and mount a directory containing the Google Cloud `key
 
 ## Changes compared to original
 
-The original integration only catered for fulfillmentText. I've changed the code to see if a "card" if provided in the fulfillmentMessages.
-If so, then a Discord.RichEmbed() is created and returned.
+- The original integration only catered for fulfillmentText. I've changed the code to see if a "card" if provided in the fulfillmentMessages. If so, then a Discord.RichEmbed() is created and returned.
+- Added support for use of .env
