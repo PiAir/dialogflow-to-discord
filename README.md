@@ -17,3 +17,8 @@ Then, just run `node index.js`.
 ## Docker
 
 Set environment variables and mount a directory containing the Google Cloud `keys.json` file to `/usr/data/` as a volume.
+
+## Changes compared to original
+
+The original integration only catered for fulfillmentText. I've changed the code to see if a "card" if provided in the fulfillmentMessages.
+If so, then a Discord.RichEmbed() is created and returned.
