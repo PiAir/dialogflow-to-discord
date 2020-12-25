@@ -8,6 +8,7 @@ This creates a node:10 docker container named node-discord-dev. It will be remov
 
 ## Production
 `$ sudo docker build --tag node-discord:1.1 .`
+
 `$ sudo docker run -d --name node-discord -v $PWD/google:/usr/data/ -u node node-discord:1.1`
 
 These two commands first builds the `node-discord:1.1` image and then start a container based on that. This will keep running.
