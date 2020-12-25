@@ -1,4 +1,6 @@
+require('dotenv').config();
 // Instantiate a DialogFlow client.
+
 const dialogflow = require('dialogflow');
 
 const dialogflowClient = new dialogflow.SessionsClient();
@@ -30,13 +32,40 @@ discordClient.on('message', m => {
     queryInput: {
       text: {
         text: message,
-        languageCode: 'en-US'
+        languageCode: 'nl'
       }
     }
   };
 
   dialogflowClient.detectIntent(dialogflowRequest).then(responses => {
-    m.channel.send(responses[0].queryResult.fulfillmentText);
+    
+    try {
+        // can we display a card of a person?
+        var cardFound = false; 
+        const messages = responses[0].queryResult.fulfillmentMessages;
+        for (var i = 0; i < messages.length; i++) {
+            // console.log(messages[i]);
+            if (messages[i].message =="card") {
+                const card = messages[i].card;
+                // console.log(card);
+                const exampleEmbed = new Discord.RichEmbed()
+                .setColor('#0099ff')
+                .setTitle(card.title)
+                .setURL(card.buttons[0].postback)
+                .setDescription(responses[0].queryResult.fulfillmentText)
+                .setImage(card.imageUri)
+                m.channel.send(exampleEmbed);
+                cardFound = true;
+            }
+        }
+        if (!cardFound) {
+            m.channel.send(responses[0].queryResult.fulfillmentText);
+        }
+    } catch(error) {
+        m.channel.send(responses[0].queryResult.fulfillmentText);
+        console.error(error);
+    }
+    
   });
 });
 
