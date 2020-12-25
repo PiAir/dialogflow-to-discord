@@ -24,3 +24,4 @@ Set environment variables and mount a directory containing the Google Cloud `key
 
 - The original integration only catered for fulfillmentText. I've changed the code to see if a "card" if provided in the fulfillmentMessages. If so, then a Discord.RichEmbed() is created and returned.
 - Added support for use of .env
+- Changed dialogflow language to nl
